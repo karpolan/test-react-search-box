@@ -1,12 +1,10 @@
 import { FunctionComponent, useCallback, MouseEvent } from 'react';
 import { Stack, Divider, Drawer, DrawerProps, FormControlLabel, Switch, Tooltip } from '@mui/material';
-import { AppIconButton } from '../../components';
 import { useAppStore } from '../../store/AppStore';
 import { LinkToPage } from '../../utils/type';
-import { useEventLogout, useEventSwitchDarkMode, useIsAuthenticated, useOnMobile } from '../../hooks';
+import { useEventSwitchDarkMode, useOnMobile } from '../../hooks';
 import SideBarNavList from './SideBarNavList';
 import { SIDE_BAR_WIDTH, TOP_BAR_DESKTOP_HEIGHT } from '../config';
-import UserInfo from '../../components/UserInfo';
 
 interface Props extends Pick<DrawerProps, 'anchor' | 'className' | 'open' | 'variant' | 'onClose'> {
   items: Array<LinkToPage>;
@@ -23,12 +21,9 @@ interface Props extends Pick<DrawerProps, 'anchor' | 'className' | 'open' | 'var
  */
 const SideBar: FunctionComponent<Props> = ({ anchor, open, variant, items, onClose, ...restOfProps }) => {
   const [state] = useAppStore();
-  // const isAuthenticated = state.isAuthenticated; // Variant 1
-  const isAuthenticated = useIsAuthenticated(); // Variant 2
   const onMobile = useOnMobile();
 
   const onSwitchDarkMode = useEventSwitchDarkMode();
-  const onLogout = useEventLogout();
 
   const handleAfterLinkClick = useCallback(
     (event: MouseEvent) => {
@@ -61,13 +56,6 @@ const SideBar: FunctionComponent<Props> = ({ anchor, open, variant, items, onClo
         {...restOfProps}
         onClick={handleAfterLinkClick}
       >
-        {isAuthenticated && (
-          <>
-            <UserInfo showAvatar />
-            <Divider />
-          </>
-        )}
-
         <SideBarNavList items={items} showIcons />
 
         <Divider />
@@ -87,8 +75,6 @@ const SideBar: FunctionComponent<Props> = ({ anchor, open, variant, items, onClo
               control={<Switch checked={state.darkMode} onChange={onSwitchDarkMode} />}
             />
           </Tooltip>
-
-          {isAuthenticated && <AppIconButton icon="logout" title="Logout Current User" onClick={onLogout} />}
         </Stack>
       </Stack>
     </Drawer>

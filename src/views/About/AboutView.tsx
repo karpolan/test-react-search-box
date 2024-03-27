@@ -12,8 +12,12 @@ const AboutView = () => {
     <AppView>
       <Grid item xs={12} md={3}>
         <Card>
-          <CardHeader title="Application title here..." subheader="Version 0.1" />
-          <CardContent>Detailed description of the application here...</CardContent>
+          <CardHeader title="Front-End Interview Task" subheader="Version 0.1" />
+          <CardContent>
+            You are tasked with building a simple React application that includes a search box. The application should
+            allow users to enter a query in the search box, fetch data from a mock API based on the query and display
+            the results in a table.
+          </CardContent>
           <CardActions>
             <AppButton to="/" color="primary">
               OK

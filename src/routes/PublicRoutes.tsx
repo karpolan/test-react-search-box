@@ -3,8 +3,7 @@ import { PublicLayout } from '../layout';
 import { NotFoundView } from '../views';
 import AboutView from '../views/About';
 import DevView from '../views/Dev';
-import LoginEmailView from '../views/Auth/Login/LoginEmailView';
-import AuthRoutes from '../views/Auth';
+import HomeView from '../views/Home';
 
 /**
  * List of routes available for anonymous users
@@ -15,8 +14,7 @@ const PublicRoutes = () => {
   return (
     <PublicLayout>
       <Routes>
-        <Route path="/" element={<LoginEmailView />} />
-        <Route path="auth/*" element={<AuthRoutes />} />
+        <Route path="/" element={<HomeView />} />
         <Route path="about" element={<AboutView />} />
         {process.env.REACT_APP_DEBUG === 'true' && <Route path="dev" element={<DevView />} />}
         <Route path="*" element={<NotFoundView />} />

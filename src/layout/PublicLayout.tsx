@@ -1,31 +1,29 @@
-import { FunctionComponent, PropsWithChildren, useCallback, useState } from 'react';
-import { Stack } from '@mui/material/';
-import { useAppStore } from '../store/AppStore';
-import { ErrorBoundary, AppIconButton } from '../components';
+import { useState, useCallback, FunctionComponent, PropsWithChildren } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Stack } from '@mui/material';
+import { AppIconButton, ErrorBoundary } from '../components';
 import { LinkToPage } from '../utils/type';
 import { useOnMobile } from '../hooks/layout';
-import { BOTTOM_BAR_DESKTOP_VISIBLE, TOP_BAR_DESKTOP_HEIGHT, TOP_BAR_MOBILE_HEIGHT } from './config';
-import { useEventSwitchDarkMode } from '../hooks/event';
+import {
+  SIDE_BAR_DESKTOP_ANCHOR,
+  SIDE_BAR_MOBILE_ANCHOR,
+  SIDE_BAR_WIDTH,
+  TOP_BAR_DESKTOP_HEIGHT,
+  TOP_BAR_MOBILE_HEIGHT,
+} from './config';
 import TopBar from './TopBar';
 import SideBar from './SideBar';
-import BottomBar from './BottomBar';
 
-// TODO: change to your app name or other word
-const TITLE_PUBLIC = 'Test Task app'; // Title for pages without/before authentication
+const TITLE = 'Front-End Interview Task'; // Title for pages after authentication
 
 /**
  * SideBar navigation items with links
  */
 const SIDE_BAR_ITEMS: Array<LinkToPage> = [
   {
-    title: 'Log In',
-    path: '/auth/login',
-    icon: 'login',
-  },
-  {
-    title: 'Sign Up',
-    path: '/auth/signup',
-    icon: 'signup',
+    title: 'Home',
+    path: '/',
+    icon: 'home',
   },
   {
     title: 'About',
@@ -43,58 +41,40 @@ if (process.env.REACT_APP_DEBUG === 'true') {
 }
 
 /**
- * BottomBar navigation items with links
- */
-const BOTTOM_BAR_ITEMS: Array<LinkToPage> = [
-  {
-    title: 'Log In',
-    path: '/auth/login',
-    icon: 'login',
-  },
-  {
-    title: 'Sign Up',
-    path: '/auth/signup',
-    icon: 'signup',
-  },
-  {
-    title: 'About',
-    path: '/about',
-    icon: 'info',
-  },
-];
-
-/**
- * Renders "Public Layout" composition
- * @layout PublicLayout
+ * Renders "PublicLayout Layout" composition
+ * @layout Public
  */
 const PublicLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
-  const onMobile = useOnMobile();
-  const onSwitchDarkMode = useEventSwitchDarkMode();
+  const navigation = useNavigate();
   const [sideBarVisible, setSideBarVisible] = useState(false);
-  const [state] = useAppStore();
-  const bottomBarVisible = onMobile || BOTTOM_BAR_DESKTOP_VISIBLE;
+  const onMobile = useOnMobile();
 
   // Variant 1 - Sidebar is static on desktop and is a drawer on mobile
-  // const sidebarOpen = onMobile ? sideBarVisible : true;
-  // const sidebarVariant = onMobile ? 'temporary' : 'persistent';
+  const sidebarOpen = onMobile ? sideBarVisible : true;
+  const sidebarVariant = onMobile ? 'temporary' : 'persistent';
 
   // Variant 2 - Sidebar is drawer on mobile and desktop
-  const sidebarOpen = sideBarVisible;
-  const sidebarVariant = 'temporary';
+  // const sidebarOpen = sideBarVisible;
+  // const sidebarVariant = 'temporary';
 
-  const title = TITLE_PUBLIC;
+  const title = TITLE;
   document.title = title; // Also Update Tab Title
 
-  const onSideBarOpen = useCallback(() => {
-    if (!sideBarVisible) setSideBarVisible(true); // Don't re-render Layout when SideBar is already open
-  }, [sideBarVisible]);
+  const onLogoClick = useCallback(() => {
+    // Navigate to first SideBar's item or to '/' when clicking on Logo/Menu icon when SideBar is already visible
+    navigation(SIDE_BAR_ITEMS?.[0]?.path || '/');
+  }, [navigation]);
 
-  const onSideBarClose = useCallback(() => {
+  const onSideBarOpen = () => {
+    if (!sideBarVisible) setSideBarVisible(true); // Don't re-render Layout when SideBar is already open
+  };
+
+  const onSideBarClose = () => {
     if (sideBarVisible) setSideBarVisible(false); // Don't re-render Layout when SideBar is already closed
-  }, [sideBarVisible]);
+  };
 
   // console.log(
-  //   'Render using PublicLayout, onMobile:',
+  //   'Render using PrivateLayout, onMobile:',
   //   onMobile,
   //   'sidebarOpen:',
   //   sidebarOpen,
@@ -104,27 +84,22 @@ const PublicLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
 
   return (
     <Stack
+      direction="column"
       sx={{
         minHeight: '100vh', // Full screen height
         paddingTop: onMobile ? TOP_BAR_MOBILE_HEIGHT : TOP_BAR_DESKTOP_HEIGHT,
+        paddingLeft: sidebarOpen && SIDE_BAR_DESKTOP_ANCHOR.includes('left') ? SIDE_BAR_WIDTH : 0,
+        paddingRight: sidebarOpen && SIDE_BAR_DESKTOP_ANCHOR.includes('right') ? SIDE_BAR_WIDTH : 0,
       }}
     >
       <Stack component="header">
         <TopBar
-          startNode={<AppIconButton icon="logo" onClick={onSideBarOpen} />}
+          startNode={<AppIconButton icon="logo" onClick={sidebarOpen ? onLogoClick : onSideBarOpen} />}
           title={title}
-          endNode={
-            <AppIconButton
-              icon={state.darkMode ? 'day' : 'night'} // Variant 1
-              // icon="daynight" // Variant 2
-              title={state.darkMode ? 'Switch to Light mode' : 'Switch to Dark mode'}
-              onClick={onSwitchDarkMode}
-            />
-          }
         />
 
         <SideBar
-          anchor="left"
+          anchor={onMobile ? SIDE_BAR_MOBILE_ANCHOR : SIDE_BAR_DESKTOP_ANCHOR}
           open={sidebarOpen}
           variant={sidebarVariant}
           items={SIDE_BAR_ITEMS}
@@ -136,13 +111,13 @@ const PublicLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
         component="main"
         sx={{
           flexGrow: 1, // Takes all possible space
-          padding: 1,
+          paddingLeft: 1,
+          paddingRight: 1,
+          paddingTop: 1,
         }}
       >
         <ErrorBoundary name="Content">{children}</ErrorBoundary>
       </Stack>
-
-      <Stack component="footer">{bottomBarVisible && <BottomBar items={BOTTOM_BAR_ITEMS} />}</Stack>
     </Stack>
   );
 };
