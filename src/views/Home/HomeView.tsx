@@ -4,9 +4,9 @@ import { AppLink, AppView } from '../../components';
 /**
  * Renders "Welcome" view
  * url: /
- * @page Welcome
+ * @page Home
  */
-const WelcomeView = () => {
+const HomeView = () => {
   return (
     <AppView>
       <Typography variant="h4">Welcome to React App with MUI</Typography>
@@ -19,4 +19,4 @@ const WelcomeView = () => {
   );
 };
 
-export default WelcomeView;
+export default HomeView;
