@@ -1,7 +1,7 @@
 {
-  "name": "_TITLE_",
-  "short_name": "_TITLE_",
-  "description": "_DESCRIPTION_",
+  "name": "Test Task",
+  "short_name": "Test Task",
+  "description": "Front-End Interview Task",
   "start_url": ".",
   "theme_color": "#000000",
   "background_color": "#ffffff",

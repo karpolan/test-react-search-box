@@ -1,22 +1,16 @@
 {
-  "name": "react-typescript-material",
-  "version": "2.1.19",
-  "description": "_DESCRIPTION_",
+  "name": "test-react-search-box",
+  "version": "0.1.1",
+  "description": "Front-End Interview Task",
   "author": {
     "name": "Anton Karpenko",
     "email": "i@karpolan.com",
     "url": "https://karpolan.com"
   },
   "private": true,
-  "keywords": [
-    "react",
-    "typescript",
-    "material",
-    "mui"
-  ],
   "repository": {
     "type": "git",
-    "url": "put your repo url here..."
+    "url": "https://github.com/karpolan/test-react-search-box.git"
   },
   "scripts": {
     "start": "react-scripts start",
