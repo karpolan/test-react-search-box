@@ -6,5 +6,6 @@ export * from './navigation';
 export * from './sessionStorage';
 export * from './path';
 export * from './sleep';
-export * from './type';
+export * from './task';
 export * from './text';
+export * from './type';
