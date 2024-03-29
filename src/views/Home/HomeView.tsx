@@ -38,7 +38,7 @@ const HomeView = () => {
             </CardContent>
             <CardActions>
               <AppButton color="info" to="/react">
-                Open Pure React Solution
+                Open React Solution
               </AppButton>
               <AppButton href="https://github.com/karpolan/test-react-search-box/tree/main/src/views/ReactSolution">
                 View Code
