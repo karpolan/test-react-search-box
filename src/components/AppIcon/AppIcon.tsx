@@ -20,6 +20,9 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import PersonIcon from '@mui/icons-material/Person';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import NotificationsIcon from '@mui/icons-material/NotificationsOutlined';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import DeleteIcon from '@mui/icons-material/Delete';
+import DesignServicesIcon from '@mui/icons-material/DesignServices';
 
 /**
  * How to use:
@@ -48,6 +51,9 @@ export const ICONS: Record<string, ComponentType> = {
   login: PersonIcon,
   logout: ExitToAppIcon,
   notifications: NotificationsIcon,
+  filter: FilterListIcon,
+  delete: DeleteIcon,
+  mui: DesignServicesIcon,
 };
 
 export interface AppIconProps extends SVGAttributes<SVGElement> {
