@@ -1,12 +1,10 @@
 import { Stack, Typography } from '@mui/material';
-import { KeyboardEvent, SyntheticEvent, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { CONTENT_MAX_WIDTH } from '../../components/config';
 import { sleep, SUGGESTIONS, User } from '../../utils';
-import { AppButton, AppLink, AppView } from '../../components';
-import SearchResultTable from '../MuiSolution/components/SearchResultTable';
+import { AppLink, AppView } from '../../components';
 import AutoComplete from './components/AutoComplete';
 import ResultTable from './components/ResultTable';
-import { is } from 'date-fns/locale';
 
 type SearchResult = User[];
 
@@ -39,11 +37,11 @@ const MuiSolutionView = () => {
       const filteredData = textToFind
         ? data.filter((user: User) =>
             `
-                ${user.name}
-                ${user.email}
-                  ${user.phone}
-                    ${user.address.city}
-                      ${user.company.name}`
+            ${user.name}
+            ${user.email}
+            ${user.phone}
+            ${user.address.city}
+            ${user.company.name}`
               .toLocaleLowerCase()
               .includes(textToFind)
           )
@@ -71,34 +69,11 @@ const MuiSolutionView = () => {
   ]);
 
   const onSearchButtonClick = useCallback(() => {
-    // Trigger search by button click
     setTriggerSearch((oldValue) => oldValue + 1);
   }, []);
 
   const onChange = useCallback((newValue: string) => {
     setValue(newValue);
-  }, []);
-
-  //   const onChange = useCallback(
-  //     (
-  //       event: SyntheticEvent,
-  //       value: string | null,
-  //       reason: AutocompleteChangeReason,
-  //       details?: AutocompleteChangeDetails<string>
-  //     ) => {
-  //       if (reason === 'selectOption') {
-  //         // Trigger search on selecting an option from the suggestions list
-  //         setTriggerSearch((oldValue) => oldValue + 1);
-  //       }
-  //     },
-  //     []
-  //   );
-
-  const onKeyDown = useCallback((event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      // Trigger search on pressing Enter key
-      setTriggerSearch((oldValue) => oldValue + 1);
-    }
   }, []);
 
   return (

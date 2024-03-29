@@ -45,11 +45,11 @@ const MuiSolutionView = () => {
       const filteredData = textToFind
         ? data.filter((user: User) =>
             `
-              ${user.name}
-              ${user.email}
-                ${user.phone}
-                  ${user.address.city}
-                    ${user.company.name}`
+            ${user.name}
+            ${user.email}
+            ${user.phone}
+            ${user.address.city}
+            ${user.company.name}`
               .toLocaleLowerCase()
               .includes(textToFind)
           )
