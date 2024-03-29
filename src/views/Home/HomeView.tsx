@@ -1,4 +1,4 @@
-import { Card, CardActions, CardContent, CardHeader, Grid, Typography } from '@mui/material';
+import { Card, CardActions, CardContent, CardHeader, Grid } from '@mui/material';
 import { AppButton, AppLink, AppView } from '../../components';
 
 /**
@@ -25,6 +25,9 @@ const HomeView = () => {
               <AppButton color="success" to="/mui">
                 Open MUI Solution
               </AppButton>
+              <AppButton href="https://github.com/karpolan/test-react-search-box/tree/main/src/views/MuiSolution">
+                View Code
+              </AppButton>
             </CardActions>
           </Card>
         </Grid>
@@ -38,6 +41,9 @@ const HomeView = () => {
             <CardActions>
               <AppButton color="info" to="/react">
                 Open Pure React Solution
+              </AppButton>
+              <AppButton href="https://github.com/karpolan/test-react-search-box/tree/main/src/views/ReactSolution">
+                View Code
               </AppButton>
             </CardActions>
           </Card>

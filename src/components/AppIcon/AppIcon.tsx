@@ -23,6 +23,7 @@ import NotificationsIcon from '@mui/icons-material/NotificationsOutlined';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DesignServicesIcon from '@mui/icons-material/DesignServices';
+import CodeIcon from '@mui/icons-material/Code';
 
 /**
  * How to use:
@@ -54,6 +55,7 @@ export const ICONS: Record<string, ComponentType> = {
   filter: FilterListIcon,
   delete: DeleteIcon,
   mui: DesignServicesIcon,
+  react: CodeIcon,
 };
 
 export interface AppIconProps extends SVGAttributes<SVGElement> {

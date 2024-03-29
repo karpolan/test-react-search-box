@@ -1,8 +1,7 @@
 import { ChangeEvent, FunctionComponent, MouseEvent } from 'react';
 import { Box, Checkbox, TableCell, TableCellProps, TableHead, TableRow, TableSortLabel } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
-import { SortingOrder } from '../types';
-import { SortingTitle } from '../utils';
+import { SortingOrder, SortingTitle } from '../../../utils';
 
 export type UserColumnId = 'id' | 'name' | 'phone' | 'company' | 'city';
 
@@ -60,7 +59,7 @@ interface Props {
 /**
  * Table head component with sorting and filtering
  * Configured for User entity
- * @component TableHeadUsers
+ * @component TableHead
  */
 const TableHeadForUsersWithSortingAndFilter: FunctionComponent<Props> = ({
   onSelectAllClick,
@@ -89,13 +88,7 @@ const TableHeadForUsersWithSortingAndFilter: FunctionComponent<Props> = ({
           />
         </TableCell>
         {USER_CELLS.map((cell) => (
-          <TableCell
-            key={cell.id}
-            align={cell.align}
-            //   padding='none'
-            //   padding='normal'
-            sortDirection={orderBy === cell.id ? order : false}
-          >
+          <TableCell key={cell.id} align={cell.align} sortDirection={orderBy === cell.id ? order : false}>
             <TableSortLabel
               active={orderBy === cell.id}
               direction={orderBy === cell.id ? order : 'asc'}

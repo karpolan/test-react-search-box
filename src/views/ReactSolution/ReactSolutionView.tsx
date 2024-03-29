@@ -1,27 +1,18 @@
-import {
-  Autocomplete,
-  AutocompleteChangeDetails,
-  AutocompleteChangeReason,
-  LinearProgress,
-  Stack,
-  TextField,
-  Typography,
-} from '@mui/material';
-import { AppAlert, AppButton, AppView } from '../../components';
+import { Stack, Typography } from '@mui/material';
 import { KeyboardEvent, SyntheticEvent, useCallback, useEffect, useState } from 'react';
-import SearchResultTable from './components/SearchResultTable';
 import { CONTENT_MAX_WIDTH } from '../../components/config';
-import { sleep, SUGGESTIONS, User } from '../../utils';
+import { sleep, User } from '../../utils';
+import { AppButton, AppView } from '../../components';
+import SearchResultTable from '../MuiSolution/components/SearchResultTable';
 
 type SearchResult = User[];
 
 /**
- * Renders "Mui Solution" view
- * url: /mui
- * @page MuiSolution
+ * Renders "React Solution" view
+ * url: /react
+ * @page ReactSolution
  */
 const MuiSolutionView = () => {
-  const [alertVisible, setAlertVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [searchResult, setSearchResult] = useState<SearchResult | undefined>();
   const [searchText, setSearchText] = useState(''); // Text of the last search
@@ -45,11 +36,11 @@ const MuiSolutionView = () => {
       const filteredData = textToFind
         ? data.filter((user: User) =>
             `
-              ${user.name}
-              ${user.email}
-                ${user.phone}
-                  ${user.address.city}
-                    ${user.company.name}`
+                ${user.name}
+                ${user.email}
+                  ${user.phone}
+                    ${user.address.city}
+                      ${user.company.name}`
               .toLocaleLowerCase()
               .includes(textToFind)
           )
@@ -60,7 +51,6 @@ const MuiSolutionView = () => {
       console.error('Error fetching data:', error);
     } finally {
       setIsLoading(false);
-      setAlertVisible(true); // Allow showing the alert if no results found
     }
   }, [value]);
 
@@ -86,20 +76,20 @@ const MuiSolutionView = () => {
     setValue(value);
   }, []);
 
-  const onChange = useCallback(
-    (
-      event: SyntheticEvent,
-      value: string | null,
-      reason: AutocompleteChangeReason,
-      details?: AutocompleteChangeDetails<string>
-    ) => {
-      if (reason === 'selectOption') {
-        // Trigger search on selecting an option from the suggestions list
-        setTriggerSearch((oldValue) => oldValue + 1);
-      }
-    },
-    []
-  );
+  //   const onChange = useCallback(
+  //     (
+  //       event: SyntheticEvent,
+  //       value: string | null,
+  //       reason: AutocompleteChangeReason,
+  //       details?: AutocompleteChangeDetails<string>
+  //     ) => {
+  //       if (reason === 'selectOption') {
+  //         // Trigger search on selecting an option from the suggestions list
+  //         setTriggerSearch((oldValue) => oldValue + 1);
+  //       }
+  //     },
+  //     []
+  //   );
 
   const onKeyDown = useCallback((event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
@@ -111,33 +101,21 @@ const MuiSolutionView = () => {
   return (
     <AppView>
       <Stack paddingY={3} spacing={3} width={CONTENT_MAX_WIDTH}>
-        <Typography>Search with suggestions using MUI Autocomplete component</Typography>
+        <Typography>Search with suggestions using pure React and HTML</Typography>
 
         {/* Search form */}
         <Stack alignItems="center" direction="row" spacing={2}>
-          <Autocomplete
-            freeSolo
-            fullWidth
-            options={SUGGESTIONS}
-            renderInput={(params) => <TextField {...params} label="Search" onKeyDown={onKeyDown} />}
-            value={value}
-            onChange={onChange}
-            onInputChange={onInputChange}
-          />
+          <input />
           <AppButton onClick={onSearchButtonClick}>Search</AppButton>
         </Stack>
 
         {/* Result */}
         {isLoading ? (
-          <LinearProgress />
+          <div>Loading...</div>
         ) : searchResult?.length ? (
           <SearchResultTable data={searchResult} searchText={searchText} />
         ) : (
-          alertVisible && (
-            <AppAlert severity="warning" onClose={() => setAlertVisible(false)}>
-              Nothing found for "{searchText}"
-            </AppAlert>
-          )
+          <div>Nothing found for "{searchText}"</div>
         )}
       </Stack>
     </AppView>
