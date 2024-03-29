@@ -7,7 +7,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { AppAlert, AppButton, AppView } from '../../components';
+import { AppAlert, AppButton, AppLink, AppView } from '../../components';
 import { KeyboardEvent, SyntheticEvent, useCallback, useEffect, useState } from 'react';
 import SearchResultTable from './components/SearchResultTable';
 import { CONTENT_MAX_WIDTH } from '../../components/config';
@@ -111,7 +111,15 @@ const MuiSolutionView = () => {
   return (
     <AppView>
       <Stack paddingY={3} spacing={3} width={CONTENT_MAX_WIDTH}>
-        <Typography>Search with suggestions using MUI Autocomplete component</Typography>
+        <Typography>
+          Search with suggestions using{' '}
+          <AppLink href="https://mui.com/material-ui/react-autocomplete/">MUI Autocomplete</AppLink> component. You can
+          see the{' '}
+          <AppLink href="https://github.com/karpolan/test-react-search-box/tree/main/src/views/MuiSolution">
+            source code on GitHub
+          </AppLink>
+          .
+        </Typography>
 
         {/* Search form */}
         <Stack alignItems="center" direction="row" spacing={2}>
@@ -124,7 +132,9 @@ const MuiSolutionView = () => {
             onChange={onChange}
             onInputChange={onInputChange}
           />
-          <AppButton onClick={onSearchButtonClick}>Search</AppButton>
+          <AppButton disabled={isLoading} onClick={onSearchButtonClick}>
+            Search
+          </AppButton>
         </Stack>
 
         {/* Result */}

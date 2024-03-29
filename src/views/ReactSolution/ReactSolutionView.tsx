@@ -2,10 +2,11 @@ import { Stack, Typography } from '@mui/material';
 import { KeyboardEvent, SyntheticEvent, useCallback, useEffect, useState } from 'react';
 import { CONTENT_MAX_WIDTH } from '../../components/config';
 import { sleep, SUGGESTIONS, User } from '../../utils';
-import { AppButton, AppView } from '../../components';
+import { AppButton, AppLink, AppView } from '../../components';
 import SearchResultTable from '../MuiSolution/components/SearchResultTable';
 import AutoComplete from './components/AutoComplete';
 import ResultTable from './components/ResultTable';
+import { is } from 'date-fns/locale';
 
 type SearchResult = User[];
 
@@ -103,12 +104,23 @@ const MuiSolutionView = () => {
   return (
     <AppView>
       <Stack paddingY={3} spacing={3} width={CONTENT_MAX_WIDTH}>
-        <Typography>Search with suggestions using pure React and HTML</Typography>
-
+        <Typography>
+          Search with suggestions using pure React and HTML. You can see the{' '}
+          <AppLink href="https://github.com/karpolan/test-react-search-box/tree/main/src/views/ReactSolution">
+            source code on GitHub
+          </AppLink>
+          .
+        </Typography>
         {/* Search form */}
         <Stack alignItems="center" direction="row" spacing={2}>
           <AutoComplete value={value} suggestions={SUGGESTIONS} onChange={onChange} />
-          <AppButton onClick={onSearchButtonClick}>Search</AppButton>
+          <button
+            disabled={isLoading}
+            style={{ padding: '0.6rem 1rem', fontWeight: 'bold', fontSize: '1rem' }}
+            onClick={onSearchButtonClick}
+          >
+            Search
+          </button>
         </Stack>
 
         {/* Result */}
