@@ -26,6 +26,11 @@ const SIDE_BAR_ITEMS: Array<LinkToPage> = [
     icon: 'home',
   },
   {
+    title: 'MUI Solution',
+    path: '/mui',
+    icon: 'mui',
+  },
+  {
     title: 'About',
     path: '/about',
     icon: 'info',
