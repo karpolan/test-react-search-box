@@ -14,7 +14,7 @@ import {
 import TopBar from './TopBar';
 import SideBar from './SideBar';
 
-const TITLE = 'Front-End Interview Task'; // Title for pages after authentication
+const TITLE = 'Front-End Interview Task';
 
 /**
  * SideBar navigation items with links
@@ -29,6 +29,11 @@ const SIDE_BAR_ITEMS: Array<LinkToPage> = [
     title: 'MUI Solution',
     path: '/mui',
     icon: 'mui',
+  },
+  {
+    title: 'React Solution',
+    path: '/react',
+    icon: 'react',
   },
   {
     title: 'About',

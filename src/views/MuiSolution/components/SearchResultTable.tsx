@@ -1,9 +1,8 @@
 import { Checkbox, Paper, Table, TableBody, TableCell, TableContainer, TablePagination, TableRow } from '@mui/material';
-import TableHeadUsers, { USER_CELLS, UserColumnId, UserRow } from './TableHeadUsers';
+import TableHeadUsers, { USER_CELLS, UserColumnId, UserRow } from './TableHead';
 import TableToolbar from './TableToolbar';
 import { useState, MouseEvent, ChangeEvent, useMemo, FunctionComponent, useEffect, useId } from 'react';
-import { SortingOrder, User } from '../types';
-import { getComparator, stableSort } from '../utils';
+import { getComparator, SortingOrder, stableSort, User } from '../../../utils';
 
 // Map types and variables to local variants
 type DataItem = User;
@@ -40,7 +39,7 @@ const SearchResultTable: FunctionComponent<Props> = ({ data, searchText }) => {
     const dataToRows = data.map((item: DataItem) => ({
       id: item.id,
       name: item.name,
-      email: item.email,
+      // email: item.email,
       phone: item.phone,
       company: item.company.name,
       city: item.address.city,
