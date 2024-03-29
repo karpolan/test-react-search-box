@@ -7,7 +7,7 @@ import { AppButton, AppView } from '../../components';
  * @page About
  */
 const AboutView = () => {
-  const version = process.env.REACT_APP_VERSION || '0.0.1';
+  const version = '0.3.5'; // process.env.REACT_APP_VERSION || '0.0.1';
   return (
     <AppView>
       <Grid item xs={12} md={3}>
