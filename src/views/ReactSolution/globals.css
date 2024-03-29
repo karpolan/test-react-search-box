@@ -1,0 +1,19 @@
+:root {
+  --color-foreground: #000;
+  --color-background: #fff;
+  --color-highlight: aqua;
+  --color-selected: #ccc;
+  --color-dropdown: #eee;
+  --color-border: #444;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-foreground: #fff;
+    --color-background: #000;
+    --color-highlight: green;
+    --color-selected: #444;
+    --color-dropdown: #333;
+    --color-border: #ccc;
+  }
+}

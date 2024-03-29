@@ -1,10 +1,10 @@
 import { Stack, Typography } from '@mui/material';
 import { useCallback, useEffect, useState } from 'react';
-import { CONTENT_MAX_WIDTH } from '../../components/config';
 import { sleep, SUGGESTIONS, User } from '../../utils';
 import { AppLink, AppView } from '../../components';
 import AutoComplete from './components/AutoComplete';
 import ResultTable from './components/ResultTable';
+import './globals.css'; // Colors for Light and Dark modes
 
 type SearchResult = User[];
 
@@ -78,7 +78,7 @@ const MuiSolutionView = () => {
 
   return (
     <AppView>
-      <Stack paddingY={3} spacing={3} width={CONTENT_MAX_WIDTH}>
+      <Stack paddingY={3} spacing={3}>
         <Typography>
           Search with suggestions using pure React and HTML. You can see the{' '}
           <AppLink href="https://github.com/karpolan/test-react-search-box/tree/main/src/views/ReactSolution">
