@@ -2,15 +2,13 @@ import { Card, CardActions, CardContent, CardHeader, Grid } from '@mui/material'
 import { AppButton, AppLink, AppView } from '../../components';
 
 /**
- * Renders "Welcome" view
+ * Renders "Home" view
  * url: /
  * @page Home
  */
 const HomeView = () => {
   return (
     <AppView>
-      {/* <Typography variant="h4">This App contains several solutions</Typography> */}
-
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <Card>

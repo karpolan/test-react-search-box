@@ -8,19 +8,3 @@ export function replaceAll(str: string, find: string, replace: string): string {
   }
   return result;
 }
-
-// Todo: Use lodash or other library with full featured "debounce" function
-export function debounce(fn: any, time: number) {
-  let timeoutId: NodeJS.Timeout | null = null;
-  return wrapper;
-
-  function wrapper(...args: any) {
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
-    timeoutId = setTimeout(() => {
-      timeoutId = null;
-      fn(...args);
-    }, time);
-  }
-}
