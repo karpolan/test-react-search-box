@@ -43,7 +43,7 @@ const ResultTable: FunctionComponent<Props> = ({ data, searchText }) => {
       </caption>
       <thead>
         <tr className={styles.left}>
-          <th>ID</th>
+          <th className={styles.right}>ID</th>
           <th>Name</th>
           <th className={styles.right}>Phone</th>
           <th>Company</th>
@@ -53,7 +53,7 @@ const ResultTable: FunctionComponent<Props> = ({ data, searchText }) => {
       <tbody>
         {rows.map((row) => (
           <tr key={row.id}>
-            <td>{row.id}</td>
+            <td className={styles.right}>{row.id}</td>
             <td>{row.name}</td>
             <td className={styles.right}>{row.phone}</td>
             <td>{row.company}</td>

@@ -10,7 +10,6 @@ import {
 import { AppAlert, AppButton, AppLink, AppView } from '../../components';
 import { KeyboardEvent, SyntheticEvent, useCallback, useEffect, useState } from 'react';
 import SearchResultTable from './components/SearchResultTable';
-import { CONTENT_MAX_WIDTH } from '../../components/config';
 import { sleep, SUGGESTIONS, User } from '../../utils';
 
 type SearchResult = User[];
@@ -110,7 +109,7 @@ const MuiSolutionView = () => {
 
   return (
     <AppView>
-      <Stack paddingY={3} spacing={3} width={CONTENT_MAX_WIDTH}>
+      <Stack paddingY={3} spacing={3}>
         <Typography>
           Search with suggestions using{' '}
           <AppLink href="https://mui.com/material-ui/react-autocomplete/">MUI Autocomplete</AppLink> component. You can

@@ -16,6 +16,7 @@
   margin: 0;
   width: 100%;
   outline: inset;
+  background-color: var(--color-background);
 }
 
 .inputWithButton:focus-within {
@@ -23,11 +24,11 @@
 }
 
 .highlight {
-  background-color: aqua;
+  background-color: var(--color-highlight);
 }
 
 .selected {
-  background-color: #ccc;
+  background-color: var(--color-selected);
 }
 
 .value {
@@ -50,7 +51,8 @@
   z-index: 999; /* Todo: Change according  UI library standard */
   overflow-y: auto;
 
-  background: #eee;
+  background-color: var(--color-dropdown);
+  color: var(--color-foreground);
   border: 1px solid #888;
   border-top: 0;
 }
@@ -60,6 +62,6 @@
 }
 
 .suggestions li:hover {
-  background-color: aqua;
+  background-color: var(--color-highlight);
   cursor: pointer;
 }
