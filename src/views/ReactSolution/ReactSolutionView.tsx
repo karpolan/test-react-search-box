@@ -1,9 +1,11 @@
 import { Stack, Typography } from '@mui/material';
 import { KeyboardEvent, SyntheticEvent, useCallback, useEffect, useState } from 'react';
 import { CONTENT_MAX_WIDTH } from '../../components/config';
-import { sleep, User } from '../../utils';
+import { sleep, SUGGESTIONS, User } from '../../utils';
 import { AppButton, AppView } from '../../components';
 import SearchResultTable from '../MuiSolution/components/SearchResultTable';
+import AutoComplete from './components/AutoComplete';
+import ResultTable from './components/ResultTable';
 
 type SearchResult = User[];
 
@@ -72,8 +74,8 @@ const MuiSolutionView = () => {
     setTriggerSearch((oldValue) => oldValue + 1);
   }, []);
 
-  const onInputChange = useCallback((_: SyntheticEvent, value: string) => {
-    setValue(value);
+  const onChange = useCallback((newValue: string) => {
+    setValue(newValue);
   }, []);
 
   //   const onChange = useCallback(
@@ -105,7 +107,7 @@ const MuiSolutionView = () => {
 
         {/* Search form */}
         <Stack alignItems="center" direction="row" spacing={2}>
-          <input />
+          <AutoComplete value={value} suggestions={SUGGESTIONS} onChange={onChange} />
           <AppButton onClick={onSearchButtonClick}>Search</AppButton>
         </Stack>
 
@@ -113,9 +115,9 @@ const MuiSolutionView = () => {
         {isLoading ? (
           <div>Loading...</div>
         ) : searchResult?.length ? (
-          <SearchResultTable data={searchResult} searchText={searchText} />
+          <ResultTable data={searchResult} searchText={searchText} />
         ) : (
-          <div>Nothing found for "{searchText}"</div>
+          searchText && <div>Nothing found for "{searchText}"</div>
         )}
       </Stack>
     </AppView>

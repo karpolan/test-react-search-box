@@ -1,4 +1,4 @@
-import { SortingOrder } from './types';
+import { SortingOrder } from './type';
 
 export const SUGGESTIONS = ['BRCA1', 'TP53', 'EGFR', 'KRAS', 'ALK', 'PTEN', 'FLT3', 'MYC', 'MAP2K1', 'NOTCH1'];
 

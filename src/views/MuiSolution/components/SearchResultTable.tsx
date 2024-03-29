@@ -39,7 +39,7 @@ const SearchResultTable: FunctionComponent<Props> = ({ data, searchText }) => {
     const dataToRows = data.map((item: DataItem) => ({
       id: item.id,
       name: item.name,
-      email: item.email,
+      // email: item.email,
       phone: item.phone,
       company: item.company.name,
       city: item.address.city,
